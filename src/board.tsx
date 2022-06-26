@@ -9,32 +9,23 @@ interface IBoardProps {
 
 const Board: React.FC<IBoardProps> = (props: IBoardProps) => {
   function renderSquare(i: number) {
-    return (
-      <Square
-        value={props.squares[i]}
-        onClick={() => props.onClick(i)} />
-    );
+    return <Square value={props.squares[i]} onClick={() => props.onClick(i)} />;
   }
 
-  return (
-    <div>
-      <div className="board-row">
-        {renderSquare(0)}
-        {renderSquare(1)}
-        {renderSquare(2)}
-      </div>
-      <div className="board-row">
-        {renderSquare(3)}
-        {renderSquare(4)}
-        {renderSquare(5)}
-      </div>
-      <div className="board-row">
-        {renderSquare(6)}
-        {renderSquare(7)}
-        {renderSquare(8)}
-      </div>
-    </div>
-  );
+  var rows: JSX.Element[] = [];
+
+  var cellId = 0;
+  for (var i = 0; i < 3; i++) {
+    var columns: JSX.Element[] = [];
+
+    for (var j = 0; j < 3; j++) {
+      columns.push(renderSquare(cellId++));
+    }
+
+    rows.push(<div className="board-row">{columns}</div>);
+  }
+
+  return <div>{rows}</div>;
 };
 
 export default Board;
