@@ -3,20 +3,20 @@ import { calculateWinner } from "./utilities/util";
 import "./index.css";
 import Board from "./board";
 
-interface IGameProps {
-};
+interface IGameProps {}
 
 interface IGameState {
-  history: IGameHistory[],
-  stepNumber: number,
-  xIsNext: boolean
-};
-
-interface IGameHistory {
-  squares: string[]
+  history: IGameHistory[];
+  stepNumber: number;
+  xIsNext: boolean;
 }
 
-class Game extends React.Component<IGameProps, IGameState>  {
+interface IGameHistory {
+  clickedSquare?: number;
+  squares: string[];
+}
+
+class Game extends React.Component<IGameProps, IGameState> {
   constructor(props: IGameProps) {
     super(props);
     this.state = {
@@ -31,6 +31,7 @@ class Game extends React.Component<IGameProps, IGameState>  {
   }
 
   handleClick(i: number) {
+    console.log("Clicked " + i);
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
     const squares = current.squares.slice();
@@ -43,6 +44,7 @@ class Game extends React.Component<IGameProps, IGameState>  {
     this.setState({
       history: history.concat([
         {
+          clickedSquare: i,
           squares: squares,
         },
       ]),
@@ -50,21 +52,33 @@ class Game extends React.Component<IGameProps, IGameState>  {
       xIsNext: !this.state.xIsNext,
     });
   }
-  
+
   jumpTo(step: number) {
     this.setState({
       stepNumber: step,
-      xIsNext: (step % 2) === 0
+      xIsNext: step % 2 === 0,
     });
   }
-  
+
   render() {
     const history = this.state.history;
     const current = history[this.state.stepNumber];
     const winner = calculateWinner(current.squares);
 
     const moves = history.map((step, move) => {
-      const desc = move ? "Go to move #" + move : "Go to game start";
+      let desc: string;
+
+      if (step.clickedSquare !== undefined) {
+        desc = "Go to move #" + move;
+        desc += " (";
+        desc += (step.clickedSquare % 3) + 1;
+        desc += ",";
+        desc += Math.floor(step.clickedSquare / 3) + 1;
+        desc += ")";
+      } else {
+        desc = "Go to game start";
+      }
+
       return (
         <li key={move}>
           <button onClick={() => this.jumpTo(move)}>{desc}</button>
@@ -94,7 +108,6 @@ class Game extends React.Component<IGameProps, IGameState>  {
       </div>
     );
   }
-
 }
 
 export default Game;
