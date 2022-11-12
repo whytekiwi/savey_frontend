@@ -1,0 +1,30 @@
+@use '../../../assets/sass/colors'
+@use '../../../assets/sass/shadows'
+@use '../../../assets/sass/sizes'
+
+@mixin coloring($color-default, $color-dark, $color-light)
+  color: colors.$text-light
+  &:not([disabled])
+    background-color: $color-default
+    &:hover
+      @include shadows.shadow(5px)
+      cursor: pointer
+      &:active
+        background-color: $color-dark
+  &:disabled
+    box-shadow: none
+    background-color: $color-light
+    color: colors.$test-light-disabled
+
+button
+  @include shadows.shadow(3px)
+  border: none
+  padding: sizes.$comfortable sizes.$social-distance
+  font-size: sizes.$font-small
+  border-radius: 50vh
+  &.primary
+    @include coloring(colors.$primary, colors.$primary-dark, colors.$primary-light)
+  &.success
+    @include coloring(colors.$success, colors.$success-dark, colors.$success-light)
+  &.error
+    @include coloring(colors.$error, colors.$error-dark, colors.$error-light)

@@ -1,0 +1,13 @@
+$rem-base: 16
+
+@function toRem($px)
+  @return calc($px / $rem-base * 1rem)
+
+$hug: toRem(2)
+$comfortable: toRem(8)
+$social-distance: toRem(10)
+
+// $font-normal: 1.25rem
+$font-normal: toRem(16)
+$font-large: toRem(20)
+$font-small: toRem(14)
