@@ -1,23 +1,25 @@
 @use '../../assets/sass/colors'
+@use '../../assets/sass/sizes'
 
 .navbar
   display: flex
-  background-color: #0e8ce0
+  background-color: colors.$primary
+  color: colors.$white
   justify-content: space-between
   align-items: center
-  padding: 0.5rem
+  padding: sizes.$padding-comfortable
   > div
     display: flex
-    gap: 1rem
+    gap: sizes.$padding-social-distance
     > a
       text-decoration: none
-      > *
-        font-size: 1.1rem
-        color: white
-      > .icon
-        height: 2rem
+      color: colors.$white
+      font-size: sizes.$font-large
+    > .icon
+      height: sizes.$font-large
 
 .body
   height: 100%
   padding: 20px
   background-color: colors.$background-light
+  color: colors.$text-dark

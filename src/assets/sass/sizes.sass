@@ -1,13 +1,15 @@
-$rem-base: 16
+@import './main'
 
-@function toRem($px)
-  @return calc($px / $rem-base * 1rem)
+// padding
+$padding-hug: toRem(2)
+$padding-comfortable: toRem(8)
+$padding-social-distance: toRem(10)
 
-$hug: toRem(2)
-$comfortable: toRem(8)
-$social-distance: toRem(10)
-
-// $font-normal: 1.25rem
+// font
 $font-normal: toRem(16)
 $font-large: toRem(20)
 $font-small: toRem(14)
+
+// border radius
+$radius-lean: toRem(5)
+$radius-dad-bod: toRem(10)
