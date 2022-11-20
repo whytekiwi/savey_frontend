@@ -1,25 +1,22 @@
 import React from "react";
-import { IconSource } from "../icon/iconSource";
 import "./button.sass";
 
 export interface IButtonProps {
-  text: string;
-  icon?: IconSource;
   disabled?: boolean;
   type?: "success" | "error" | "primary" | "neutral";
   onClick?: () => void;
+  children: string | JSX.Element
 }
 
 const Button: React.FC<IButtonProps> = ({
-  text,
-  icon,
   disabled = false,
   type = "primary",
   onClick,
+  children,
 }) => {
   return (
     <button className={type} disabled={disabled} onClick={onClick}>
-      {text}
+      {children}
     </button>
   );
 };

@@ -1,26 +1,27 @@
 import React, { useState } from "react";
-import { Color } from "../../components/common/colorSwatch/color";
-import ColorPicker from "../../components/common/colorSwatch/colorPicker";
+import { useParams } from "react-router-dom";
+import Button from "../../components/common/button/button";
+import Modal from "../../components/common/modal/modal";
 
 export interface IHomeProps {}
 
 const Home: React.FC<IHomeProps> = ({}) => {
-  const [color, setSelectedColor] = useState(Color.copper);
+  const [open, setIsOpen] = useState(false);
+
+  const params = useParams();
+  const id = params["id"];
+
+  const handleToggle = () => {
+    setIsOpen(!open);
+  };
 
   return (
     <div>
-      <h1>TODO photo collage</h1>
-      <h2>TODO modal for screening users</h2>
-      <h2>Selected color {color}</h2>
-      <div style={{
-        width: "90%"
-      }}>
-        <ColorPicker
-          selectedColor={color}
-          onColorSelected={(color) => setSelectedColor(color)}
-        />
-      </div>
-      <h2>Does this move</h2>
+      <h2>Id {id}</h2>
+      <Button onClick={handleToggle}>Toggle Modal</Button>
+      <Modal open={open} toggle={handleToggle}>
+        <input type="text"/>
+      </Modal>
     </div>
   );
 };

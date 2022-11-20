@@ -8,7 +8,7 @@ const Root = () => (
   <>
     <div className="navbar">
       <div>
-        <Link to={`home`}>Home</Link>
+        <Link to={``}>Home</Link>
         <Link to={`about`}>About</Link>
       </div>
       <div>
