@@ -1,10 +1,10 @@
 import { ColorUtil } from "../components/common/colorSwatch/color";
 
-export class Message {
+export class Wish {
   id?: string;
-  photoUrl?: string;
-  videoUploaded: boolean = false;
+  name?: string;
   tags: string[] = [];
   color: string = ColorUtil.randomColor();
-  name?: string;
+  photoUrl?: string;
+  videoUrl?: string;
 }
