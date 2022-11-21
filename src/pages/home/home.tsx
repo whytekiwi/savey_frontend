@@ -4,9 +4,7 @@ import { useParams } from "react-router-dom";
 import { config } from "../../constants";
 import { useStores } from "../../stores/rootStore";
 
-export interface IHomeProps {}
-
-const Home: React.FC<IHomeProps> = ({}) => {
+const Home = () => {
   const { wishStore } = useStores();
 
   const params = useParams();
