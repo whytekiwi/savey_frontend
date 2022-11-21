@@ -1,15 +1,31 @@
-import { makeAutoObservable } from "mobx";
+import {
+  makeObservable,
+  observable,
+  runInAction,
+} from "mobx";
 import { Wish } from "../models/wish";
+import { WishService } from "../services/wishService";
 
 class WishStore {
+  private wishService: WishService;
+
   wish?: Wish;
 
-  constructor() {
-    makeAutoObservable(this);
+  constructor(wishService: WishService) {
+    makeObservable(this, {
+      wish: observable,
+    });
 
-    this.wish = new Wish();
-    this.wish.id = "dj test id";
+    this.wishService = wishService;
   }
+
+  loadWish = (id?: string) => {
+    const wish = this.wishService.getWish();
+
+    runInAction(() => {
+      this.wish = wish;
+    });
+  };
 }
 
 export default WishStore;
