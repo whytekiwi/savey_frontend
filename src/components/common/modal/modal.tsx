@@ -1,5 +1,4 @@
 import React, {
-  HtmlHTMLAttributes,
   KeyboardEvent,
   useEffect,
   useRef,
@@ -12,7 +11,7 @@ export interface IModalProps {
   toggle: () => void;
 }
 
-const Button: React.FC<IModalProps> = ({ open, children, toggle }) => {
+const Modal: React.FC<IModalProps> = ({ open, children, toggle }) => {
   const closeKeys: string[] = ["escape"];
 
   const ref = useRef<HTMLDivElement>(null);
@@ -53,4 +52,4 @@ const Button: React.FC<IModalProps> = ({ open, children, toggle }) => {
   );
 };
 
-export default Button;
+export default Modal;
