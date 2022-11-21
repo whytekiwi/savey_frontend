@@ -1,8 +1,6 @@
 import React from "react";
 
-export interface IHomeProps {}
-
-const About: React.FC<IHomeProps> = ({}) => {
+const About = () => {
   return (
     <div>
       <h1>Explain</h1>
