@@ -1,6 +1,7 @@
 import { observer } from "mobx-react";
 import React from "react";
 import { useParams } from "react-router-dom";
+import { config } from "../../constants";
 
 export interface IHomeProps {}
 
@@ -11,6 +12,7 @@ const Home: React.FC<IHomeProps> = ({}) => {
   return (
     <div>
       <h2>Id {id}</h2>
+      <h3>{config.base_url}</h3>
     </div>
   );
 };
