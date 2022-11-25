@@ -8,7 +8,7 @@ export interface ITagSelectorProps {
   onTagToggled: (tag: string) => void;
 }
 
-const ColorPicker: React.FC<ITagSelectorProps> = ({
+const TagSelector: React.FC<ITagSelectorProps> = ({
   selectedTags,
   onTagToggled,
 }) => {
@@ -53,4 +53,4 @@ const ColorPicker: React.FC<ITagSelectorProps> = ({
   );
 };
 
-export default ColorPicker;
+export default TagSelector;

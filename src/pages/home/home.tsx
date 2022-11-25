@@ -1,27 +1,24 @@
 import { observer } from "mobx-react";
 import React from "react";
-import { useParams } from "react-router-dom";
-import { config } from "../../constants";
+import { useNavigate, useParams } from "react-router-dom";
+import Button from "../../components/common/button/button";
+import TextInput from "../../components/common/textInput/textInput";
 import { useStores } from "../../stores/rootStore";
 
 const Home = () => {
-  const { wishStore } = useStores();
+  const { uiStore } = useStores();
 
-  const params = useParams();
-  const id = params["id"];
-
-  wishStore.loadWish(id);
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   return (
-    <div>
-      <h2>Id {id}</h2>
-      <h3>{config.base_url}</h3>
-      {wishStore.wish && (
-        <div>
-          <h1>{wishStore.wish.name}</h1>
-        </div>
-      )}
-    </div>
+    <>
+      <TextInput
+        value={uiStore.id}
+        onValueChanged={(value) => uiStore.setId(value)}
+      />
+      <Button onClick={() => navigate(`/${uiStore.id}`)}>Load Wish</Button>
+    </>
   );
 };
 

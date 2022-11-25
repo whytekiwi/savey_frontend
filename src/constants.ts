@@ -1,13 +1,16 @@
 interface IContants {
-  base_url: string;
+  baseUrl: string;
+  isDev: boolean;
 }
 
 const dev: IContants = {
-  base_url: "http://localhost:7071/",
+  baseUrl: "http://localhost:7071/api",
+  isDev: true,
 };
 
 const prod: IContants = {
-  base_url: "https://fa-savey-backend.azurewebsites.net/api/",
+  baseUrl: "https://fa-savey-backend.azurewebsites.net/api",
+  isDev: false,
 };
 
-export const config = process.env.NODE_ENV === "development" ? dev : prod;
+export const Config = process.env.NODE_ENV === "development" ? dev : prod;

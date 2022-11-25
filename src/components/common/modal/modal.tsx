@@ -1,8 +1,4 @@
-import React, {
-  KeyboardEvent,
-  useEffect,
-  useRef,
-} from "react";
+import React, { KeyboardEvent, useEffect, useRef } from "react";
 import "./modal.sass";
 
 export interface IModalProps {
@@ -27,7 +23,7 @@ const Modal: React.FC<IModalProps> = ({ open, children, toggle }) => {
     const mouseEvent = event as PointerEvent;
     const baseElement = mouseEvent.composedPath()[0];
 
-    if (baseElement === ref.current) {
+    if (open && baseElement === ref.current) {
       toggle();
     }
   };

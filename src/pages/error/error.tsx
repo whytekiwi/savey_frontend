@@ -3,7 +3,6 @@ import { useRouteError } from "react-router-dom";
 
 const Error = () => {
   const error: any = useRouteError();
-  console.error(error);
 
   // TODO add styling to this page
 

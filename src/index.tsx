@@ -1,5 +1,5 @@
 import * as React from "react";
-import * as ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import Root from "./pages/root/root";
 import Home from "./pages/home/home";
 import About from "./pages/about/about";
@@ -28,9 +28,8 @@ const router = createBrowserRouter([
   },
 ]);
 
-ReactDOM.render(
+createRoot(document.getElementById("root") as HTMLElement).render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>,
-  document.getElementById("root") as HTMLElement
+  </React.StrictMode>
 );

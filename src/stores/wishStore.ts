@@ -1,8 +1,4 @@
-import {
-  makeObservable,
-  observable,
-  runInAction,
-} from "mobx";
+import { makeObservable, observable, runInAction } from "mobx";
 import { Wish } from "../models/wish";
 import { WishService } from "../services/wishService";
 
@@ -19,12 +15,12 @@ class WishStore {
     this.wishService = wishService;
   }
 
-  loadWish = (id?: string) => {
-    const wish = this.wishService.getWish();
+  loadWish = async (id?: string) => {
+    const wish = await this.wishService.getWish(id);
 
-    runInAction(() => {
-      this.wish = wish;
-    });
+    // runInAction(() => {
+    //   this.wish = wish;
+    // });
   };
 }
 

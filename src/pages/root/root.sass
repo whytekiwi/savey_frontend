@@ -1,26 +1,11 @@
 @use '../../assets/sass/colors'
 @use '../../assets/sass/sizes'
 
-.navbar
-  display: flex
-  background-color: colors.$primary
-  color: colors.$white
-  justify-content: space-between
-  align-items: center
-  padding: sizes.$padding-comfortable
-  > div
-    display: flex
-    gap: sizes.$padding-social-distance
-    > a
-      text-decoration: none
-      color: colors.$white
-      font-size: sizes.$font-large
-    > .icon
-      height: sizes.$font-large
-
 body
   background-color: colors.$background-light
   color: colors.$text-dark
 
 .body
   padding: 20px
+  > *
+    box-sizing: border-box
