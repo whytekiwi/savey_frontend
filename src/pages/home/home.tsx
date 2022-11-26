@@ -5,7 +5,6 @@ import Button from "../../components/common/button/button";
 import TextInput from "../../components/common/textInput/textInput";
 import PhotoBanner from "../../components/photoBanner/photoBanner";
 import { useStores } from "../../stores/rootStore";
-import WishStore from "../../stores/wishStore";
 
 const Home = () => {
   const { uiStore, wishStore } = useStores();
