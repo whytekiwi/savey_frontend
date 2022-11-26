@@ -3,6 +3,7 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/common/button/button";
 import TextInput from "../../components/common/textInput/textInput";
+import PhotoBanner from "../../components/photoBanner/photoBanner";
 import { useStores } from "../../stores/rootStore";
 
 const Home = () => {
@@ -13,6 +14,8 @@ const Home = () => {
 
   return (
     <>
+      <PhotoBanner text="hello world" />
+
       <TextInput
         value={uiStore.id}
         onValueChanged={(value) => uiStore.setId(value)}
