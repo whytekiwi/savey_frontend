@@ -4,14 +4,22 @@ import { Config } from "../constants";
 export class WishService {
   private wishPath: string = "wish";
 
-  getWish = async (id?: string): Promise<Wish> => {
+  getWish = async (id?: string): Promise<Wish | undefined> => {
     const response = await this.request(this.wishPath, id);
 
     if (!response.ok) {
       throw new Error("Could not load data");
     }
 
-    return (await response.json()) as Wish;
+    try {
+      const json = await response.json();
+      if (json) {
+        return json as Wish;
+      }
+      return undefined;
+    } catch {
+      return undefined;
+    }
   };
 
   private request(

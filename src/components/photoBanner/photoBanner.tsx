@@ -10,7 +10,7 @@ const PhotoBanner: React.FC<IPhotoBannerProps> = ({ text }) => {
   return (
     <div>
       <span>{text}</span>
-      <img src={Photos.photo1} />
+      {Photos.photo1}
     </div>
   );
 };

@@ -18,9 +18,9 @@ class WishStore {
   loadWish = async (id?: string) => {
     const wish = await this.wishService.getWish(id);
 
-    // runInAction(() => {
-    //   this.wish = wish;
-    // });
+    runInAction(() => {
+      this.wish = wish;
+    });
   };
 }
 
