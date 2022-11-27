@@ -1,9 +1,9 @@
 {
-    "trailingSlash": "auto",
-    "routes": [
-      {
-        "route": "/*",
-        "redirect": ""
-      }
-    ]
-  }
+    "navigationFallback": {
+       "rewrite": "index.html",
+       "exclude": ["/static/media/*.{png,jpg,jpeg,gif,bmp}", "/static/css/*", "/LibbyPhotos/*"]
+    },
+    "mimeTypes": {
+        ".json": "text/json"
+    }
+}
