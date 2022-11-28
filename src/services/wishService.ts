@@ -28,7 +28,7 @@ export class WishService {
     const formData = new FormData();
     formData.append(key, file);
 
-    const url = this.getUrl(this.wishPath, id, this.photoPath);
+    const url = this.getPhotoUrl(id);
 
     const response = await fetch(url, {
       method: "post",
@@ -54,6 +54,10 @@ export class WishService {
       return undefined;
     }
   };
+
+  getPhotoUrl(id: string): string {
+    return this.getUrl(this.wishPath, id, this.photoPath);
+  }
 
   private getUrl(...parts: (string | undefined)[]): string {
     return parts.reduce((path, current) => {
