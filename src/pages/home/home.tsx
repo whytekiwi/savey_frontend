@@ -3,7 +3,7 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Button from "../../components/common/button/button";
 import TextInput from "../../components/common/textInput/textInput";
-import PhotoBanner from "../../components/photoBanner/photoBanner";
+import WishCard from "../../components/wishCard/wishCard";
 import { useStores } from "../../stores/rootStore";
 
 const Home = () => {
@@ -16,17 +16,28 @@ const Home = () => {
     wishStore.loadWish(id);
   }
 
+  // id = T9aEOa
+
   return (
     <>
-      <PhotoBanner text="hello world" />
-
-      {wishStore.wish && <div>{wishStore.wish.name}</div>}
-
       <TextInput
         value={uiStore.id}
         onValueChanged={(value) => uiStore.setId(value)}
       />
       <Button onClick={() => navigate(`/${uiStore.id}`)}>Load Wish</Button>
+      <Button
+        onClick={() => {
+          wishStore.loadWish();
+        }}
+      >
+        Create Wish
+      </Button>
+      <div>{wishStore.wish?.photoUrl}</div>
+      <WishCard
+        isLoading={false}
+        wish={wishStore.wish}
+        onPhotoSelected={(file) => wishStore.uploadPhoto(file)}
+      />
     </>
   );
 };
