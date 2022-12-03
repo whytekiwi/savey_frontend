@@ -6,36 +6,82 @@ class WishStore {
   private wishService: WishService;
 
   wish?: Wish;
+  isLoading: boolean;
+  isUploadingPhoto: boolean;
+  isUploadingVideo: boolean;
 
   constructor(wishService: WishService) {
     makeObservable(this, {
       wish: observable,
+      isLoading: observable,
+      isUploadingPhoto: observable,
+      isUploadingVideo: observable,
     });
 
     this.wishService = wishService;
+    this.isLoading = false;
+    this.isUploadingPhoto = false;
+    this.isUploadingVideo = false;
   }
 
   async loadWish(id?: string) {
+    runInAction(() => {
+      this.isLoading = true;
+    });
+
     const wish = await this.wishService.getWish(id);
 
     runInAction(() => {
+      this.isLoading = false;
       this.wish = wish;
+    });
+  }
+
+  async saveWish(wish: Wish) {
+    runInAction(() => {
+      this.isLoading = true;
+    });
+
+    await this.wishService.saveWish(wish);
+
+    runInAction(() => {
+      this.isLoading = false;
     });
   }
 
   async uploadPhoto(file: File) {
     if (this.wish?.id) {
-      const wish = await this.wishService.postFile(
-        this.wish.id,
-        this.wishService.photoKey,
-        file
-      );
+      runInAction(() => {
+        this.wish!.photoUrl = undefined;
+        this.isUploadingPhoto = true;
+      });
 
-      if (wish) {
-        runInAction(() => {
+      const wish = await this.wishService.postFile(this.wish.id, file, "photo");
+
+      runInAction(() => {
+        if (wish) {
           this.wish = wish;
-        });
-      }
+        }
+        this.isUploadingPhoto = false;
+      });
+    }
+  }
+
+  async uploadVideo(file: File) {
+    if (this.wish?.id) {
+      runInAction(() => {
+        this.wish!.videoUrl = undefined;
+        this.isUploadingVideo = true;
+      });
+
+      const wish = await this.wishService.postFile(this.wish.id, file, "video");
+
+      runInAction(() => {
+        if (wish) {
+          this.wish = wish;
+        }
+        this.isUploadingVideo = false;
+      });
     }
   }
 }

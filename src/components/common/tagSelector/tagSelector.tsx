@@ -23,32 +23,35 @@ const TagSelector: React.FC<ITagSelectorProps> = ({
   };
 
   return (
-    <div
-      className={classNames("tag-selector", {
-        expanded: isExpanded,
-      })}
-      onClick={() => setIsExpanded(!isExpanded)}
-    >
-      <div className="selected-tags">
-        {selectedTags.length > 0 ? selectedTags.map((tag) => formatSelectedTag(tag)) : <span className="placeholder">Select some tags...</span>}
+    <div className="tag-selector" onClick={() => setIsExpanded(!isExpanded)}>
+      <div
+        className={classNames("container", {
+          expanded: isExpanded,
+        })}
+      >
+        {selectedTags.length > 0 ? (
+          selectedTags.map((tag) => formatSelectedTag(tag))
+        ) : (
+          <span className="placeholder">Select some tags...</span>
+        )}
+        {isExpanded && (
+          <div className="dropdown-content">
+            {TagUtil.allTags.map((tag) => (
+              <div
+                className={classNames("color-value", {
+                  selected: selectedTags.includes(tag),
+                })}
+                key={tag}
+                onClick={() => {
+                  onTagToggled(tag);
+                }}
+              >
+                {tag}
+              </div>
+            ))}
+          </div>
+        )}
       </div>
-      {isExpanded && (
-        <div className="dropdown-content">
-          {TagUtil.allTags.map((tag) => (
-            <div
-              className={classNames("color-value", {
-                selected: selectedTags.includes(tag),
-              })}
-              key={tag}
-              onClick={() => {
-                onTagToggled(tag);
-              }}
-            >
-              {tag}
-            </div>
-          ))}
-        </div>
-      )}
     </div>
   );
 };

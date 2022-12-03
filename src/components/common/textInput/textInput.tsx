@@ -1,18 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./textInput.sass";
 
 export interface ITextInputProps {
-  value: string;
+  value?: string;
+  placeholder: string;
   onValueChanged: (value: string) => void;
 }
 
-const TextInput: React.FC<ITextInputProps> = ({ value, onValueChanged }) => {
+const TextInput: React.FC<ITextInputProps> = ({
+  value,
+  placeholder,
+  onValueChanged,
+}) => {
+  const [innerValue, setValue] = useState<string>(value ?? "");
+
+  useEffect(() => {
+    onValueChanged(innerValue);
+  }, [innerValue]);
+
   return (
     <input
       className="text-input"
       type="text"
-      value={value}
-      onChange={(event) => onValueChanged(event.target.value)}
+      placeholder={placeholder}
+      value={innerValue}
+      onChange={(event) => setValue(event.target.value)}
     />
   );
 };

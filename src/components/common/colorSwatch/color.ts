@@ -7,7 +7,6 @@ export enum Color {
   royalBlue = "Royal Blue",
   flame = "Flame",
   copper = "Copper",
-  teaGreen = "Tea Green",
   turquoise = "Turquoise",
   yellowGreen = "Yellow Green",
 }

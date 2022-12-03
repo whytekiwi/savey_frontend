@@ -1,6 +1,5 @@
 @use "../../../assets/sass/colors"
 @use "../../../assets/sass/sizes"
-@use "../../../assets/sass/shadows"
 @import "../../../assets/sass/main"
 
 .text-input
@@ -8,6 +7,13 @@
   background-color: colors.$white
   padding: sizes.$padding-comfortable 1rem
   border-radius: 1rem / 50%
-  border: 1px solid colors.$primary-light
-  &:focus
-    border: 1px solid colors.$primary-dark
+  min-height: toRem(41)
+  font-size: toRem(18)
+  border: none
+  outline: none
+  font-family: 'Raleway', sans-serif
+  &::placeholder
+    color: colors.$text-disabled
+    opacity: 1
+  &:focus-visible
+    border: none !important
