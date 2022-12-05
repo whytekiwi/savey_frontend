@@ -5,7 +5,8 @@ export interface IButtonProps {
   disabled?: boolean;
   type?: "success" | "error" | "primary" | "neutral";
   onClick?: () => void;
-  children: string | JSX.Element
+  children: string | JSX.Element;
+  onHoverEvent?: (isHovering: boolean) => void;
 }
 
 const Button: React.FC<IButtonProps> = ({
@@ -13,9 +14,16 @@ const Button: React.FC<IButtonProps> = ({
   type = "primary",
   onClick,
   children,
+  onHoverEvent,
 }) => {
   return (
-    <button className={type} disabled={disabled} onClick={onClick}>
+    <button
+      onMouseOver={() => onHoverEvent?.(true)}
+      onMouseLeave={() => onHoverEvent?.(false)}
+      className={type}
+      disabled={disabled}
+      onClick={onClick}
+    >
       {children}
     </button>
   );

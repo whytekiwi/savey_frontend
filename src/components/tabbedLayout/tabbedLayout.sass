@@ -1,0 +1,49 @@
+@use "../../assets/sass/colors"
+@use "../../assets/sass/sizes"
+@use "../../assets/sass/shadows"
+@import "../../assets/sass/main"
+
+.tabbed-layout
+  max-width: 70%
+  background: colors.$white
+  color: colors.$text-dark
+  padding: toRem(10)
+  border-radius: toRem(20)
+  max-width: 70%
+  > .content
+    height: 400px
+    min-width: 350px
+    margin: auto
+    display: flex
+    justify-content: center
+    position: relative
+    >img
+      height: auto
+      max-width: 100%
+      max-height: 400px
+      object-fit: contain
+    > .file-input
+      position: absolute
+      top: toRem(20)
+      right: toRem(20)
+  > .tabs
+    margin: sizes.$padding-comfortable
+    position: relative
+    display: flex
+    justify-content: center
+    > .tabs-indicator
+      position: absolute
+      background-color: colors.$primary
+      width: 50%
+      height: 100%
+      z-index: 10
+      border-radius: 0.5rem / 50%
+      transition: all 0.2s ease-out
+    > div:not(.tabs-indicator)
+      z-index: 11
+      padding: toRem(4) 0
+      cursor: pointer
+      flex: 0 0 50%
+      text-align: center
+      &.selected
+        color: white

@@ -1,6 +1,7 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Wish } from "../../models/wish";
-import placeholder from "../../assets/img/placeholder-photo.svg";
+import placeholderPhoto from "../../assets/img/placeholder-photo.svg";
+import placeholderVideo from "../../assets/img/placeholder-video.svg";
 import FileSelector from "../common/fileSelector/fileSelector";
 import { observer } from "mobx-react";
 import TextInput from "../common/textInput/textInput";
@@ -10,7 +11,7 @@ import { runInAction } from "mobx";
 import "./wishCard.sass";
 import { ColorUtil } from "../common/colorSwatch/color";
 import ColorPicker from "../common/colorSwatch/colorPicker";
-import Loader from "../common/loader/loader";
+import TabbedLayout from "../tabbedLayout/tabbedLayout";
 
 export interface IWishCardProps {
   isLoading: boolean;
@@ -41,16 +42,76 @@ const WishCard: React.FC<IWishCardProps> = ({
     };
   }, [handleWishUpdated]);
 
+  const [selectedTab, setSelectedTab] = useState(0);
+  const photoIndex = 0;
+  const videoIndex = 1;
+
   return (
     <div className={`wish-card ${ColorUtil.getClassName(wish.color)}`}>
       <span>Your unique code: {wish.id}</span>
-      <div className="img-container">
-        {isUploadingPhoto ? (
-          <Loader />
-        ) : (
-          <img src={wish.photoUrl ?? placeholder} alt="your lovely face!" />
-        )}
-      </div>
+
+      <TabbedLayout
+        tabs={[
+          {
+            label: "Photo",
+            content: (
+              <>
+                {wish.photoUrl ? (
+                  <img
+                    src={wish.photoUrl}
+                    alt="Your lovely photo"
+                    aria-hidden
+                  />
+                ) : (
+                  <img
+                    src={placeholderPhoto}
+                    alt="Upload a nice photo using the button below"
+                    aria-hidden
+                  />
+                )}
+                <FileSelector
+                  accept="image/*"
+                  selectedFileName={wish.photoUrl}
+                  onFileSelected={(file) => {
+                    setSelectedTab(photoIndex);
+                    onPhotoSelected?.(file);
+                  }}
+                  text="Choose a photo"
+                />
+              </>
+            ),
+          },
+          {
+            label: "Video",
+            content: (
+              <>
+                {wish.videoUrl ? (
+                  <video controls>
+                    <source src={wish.videoUrl} />
+                  </video>
+                ) : (
+                  <img
+                    src={placeholderVideo}
+                    alt="Upload a nice video using the button below"
+                  />
+                )}
+                <FileSelector
+                  accept="video/mp4,video/x-m4v,video/*"
+                  selectedFileName={wish.videoUrl}
+                  onFileSelected={(file) => {
+                    setSelectedTab(videoIndex);
+                    onVideoSelected?.(file);
+                  }}
+                  text="Choose a video"
+                />
+              </>
+            ),
+          },
+        ]}
+        selectedTabIndex={selectedTab}
+        isLoading={isUploadingPhoto || isUploadingVideo}
+        setSelectedTabIndex={(index) => setSelectedTab(index)}
+      />
       <TextInput
         placeholder="Enter a name..."
         value={wish.name}
@@ -84,20 +145,6 @@ const WishCard: React.FC<IWishCardProps> = ({
           handleWishUpdated(wish);
         }}
       />
-      <div className="file-upload">
-        <FileSelector
-          accept="image/*"
-          selectedFileName={wish.photoUrl}
-          onFileSelected={(file) => onPhotoSelected?.(file)}
-          text="Choose a photo"
-        />
-        <FileSelector
-          accept="video/mp4,video/x-m4v,video/*"
-          selectedFileName={wish.videoUrl}
-          onFileSelected={(file) => onVideoSelected?.(file)}
-          text="Choose a video"
-        />
-      </div>
     </div>
   );
 };

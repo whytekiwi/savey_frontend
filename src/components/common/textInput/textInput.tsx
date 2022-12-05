@@ -16,7 +16,7 @@ const TextInput: React.FC<ITextInputProps> = ({
 
   useEffect(() => {
     onValueChanged(innerValue);
-  }, [innerValue]);
+  }, [innerValue, onValueChanged]);
 
   return (
     <input

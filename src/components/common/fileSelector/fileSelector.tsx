@@ -1,5 +1,6 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import Button from "../button/button";
+import { ReactComponent as UploadIcon } from "../../../assets/img/upload.svg";
 import "./fileSelector.sass";
 
 export interface IFileSelectorProps {
@@ -21,6 +22,8 @@ const FileSelector: React.FC<IFileSelectorProps> = ({
     onFileSelected(files[0]);
   };
 
+  const [isHovering, setIsHovering] = useState(false);
+
   const inputElement = useRef<HTMLInputElement>(null);
 
   return (
@@ -31,8 +34,15 @@ const FileSelector: React.FC<IFileSelectorProps> = ({
         accept={accept}
         onChange={handleFormEvent}
       />
-      <Button onClick={() => inputElement.current?.click()}>{text}</Button>
-      {selectedFileName && <span>{selectedFileName}</span>}
+      <Button
+        onHoverEvent={(isHovering) => setIsHovering(isHovering)}
+        onClick={() => inputElement.current?.click()}
+      >
+        <>
+          <UploadIcon />
+          {isHovering && text}
+        </>
+      </Button>
     </div>
   );
 };

@@ -1,8 +1,19 @@
+@use "../../../assets/sass/sizes"
 @import "../../../assets/sass/main"
 
+$button-size: calc(sizes.$icon-default + sizes.$padding-social-distance * 2)
+
 .file-input
-  width: 100%
   > input
     display: none
   > button
-    margin-right: toRem(10)
+    min-width: $button-size
+    minheight: $button-size
+    border-radius: calc($button-size / 2)
+    transition: width 0.2s ease-out
+    display: flex
+    align-items: center
+    gap: toRem(10)
+    > svg
+      width: sizes.$icon-default
+      height: sizes.$icon-default
