@@ -49,7 +49,6 @@ const WishCard: React.FC<IWishCardProps> = ({
   return (
     <div className={`wish-card ${ColorUtil.getClassName(wish.color)}`}>
       <span>Your unique code: {wish.id}</span>
-
       <TabbedLayout
         tabs={[
           {
@@ -116,6 +115,7 @@ const WishCard: React.FC<IWishCardProps> = ({
         placeholder="Enter a name..."
         value={wish.name}
         onValueChanged={(text) => {
+          if (text === wish.name) return;
           runInAction(() => {
             wish.name = text;
           });
