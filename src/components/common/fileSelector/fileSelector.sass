@@ -1,16 +1,15 @@
 @use "../../../assets/sass/sizes"
 @import "../../../assets/sass/main"
 
-$button-size: calc(sizes.$icon-default + sizes.$padding-social-distance * 2)
+$button-size: calc(sizes.$icon-default + sizes.$padding-comfortable * 2)
 
 .file-input
   > input
     display: none
   > button
     min-width: $button-size
-    minheight: $button-size
+    min-height: $button-size
     border-radius: calc($button-size / 2)
-    transition: width 0.2s ease-out
     display: flex
     align-items: center
     gap: toRem(10)
