@@ -4,6 +4,7 @@ import "./root.sass";
 import { useStores } from "../../stores/rootStore";
 import Button from "../../components/common/button/button";
 import { observer } from "mobx-react";
+import Toast from "../../components/toast/toast";
 
 const Root = () => {
   const { uiStore } = useStores();
@@ -13,6 +14,7 @@ const Root = () => {
       {uiStore.notLibby ? (
         <div className="body">
           <Outlet />
+          <Toast />
         </div>
       ) : (
         <>

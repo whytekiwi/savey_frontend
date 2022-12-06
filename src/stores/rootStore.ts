@@ -1,5 +1,6 @@
 import React from "react";
 import { WishService } from "../services/wishService";
+import ToastStore from "./toastStore";
 import UiStore from "./uiStore";
 import WishStore from "./wishStore";
 
@@ -8,12 +9,14 @@ class RootStore {
 
   uiStore: UiStore;
   wishStore: WishStore;
+  toastStore: ToastStore;
 
   constructor() {
     this.wishService = new WishService();
 
     this.uiStore = new UiStore();
     this.wishStore = new WishStore(this.wishService);
+    this.toastStore = new ToastStore();
   }
 }
 

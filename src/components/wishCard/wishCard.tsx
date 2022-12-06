@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { Wish } from "../../models/wish";
 import placeholderPhoto from "../../assets/img/placeholder-photo.svg";
 import placeholderVideo from "../../assets/img/placeholder-video.svg";
+import { ReactComponent as CopyIcon } from "../../assets/img/copy.svg";
 import FileSelector from "../common/fileSelector/fileSelector";
 import { observer } from "mobx-react";
 import TextInput from "../common/textInput/textInput";
@@ -12,6 +13,7 @@ import "./wishCard.sass";
 import { ColorUtil } from "../common/colorSwatch/color";
 import ColorPicker from "../common/colorSwatch/colorPicker";
 import TabbedLayout from "../tabbedLayout/tabbedLayout";
+import { useStores } from "../../stores/rootStore";
 
 export interface IWishCardProps {
   isLoading: boolean;
@@ -32,6 +34,8 @@ const WishCard: React.FC<IWishCardProps> = ({
   onVideoSelected,
   onWishUpdated,
 }) => {
+  const { toastStore } = useStores();
+
   const handleWishUpdated = useRef(
     debounce((wish: Wish) => onWishUpdated?.(wish), 300)
   ).current;
@@ -48,7 +52,6 @@ const WishCard: React.FC<IWishCardProps> = ({
 
   return (
     <div className={`wish-card ${ColorUtil.getClassName(wish.color)}`}>
-      <span>Your unique code: {wish.id}</span>
       <TabbedLayout
         tabs={[
           {
@@ -145,6 +148,18 @@ const WishCard: React.FC<IWishCardProps> = ({
           handleWishUpdated(wish);
         }}
       />
+      <span
+        className="unique-code"
+        onClick={() => {
+          if (navigator.clipboard && wish.id) {
+            navigator.clipboard.writeText(wish.id);
+            toastStore.showToast("Copied: " + wish.id);
+          }
+        }}
+      >
+        Your unique code: {wish.id}
+        <CopyIcon />
+      </span>
     </div>
   );
 };

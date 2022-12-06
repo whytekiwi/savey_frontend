@@ -1,0 +1,26 @@
+@use "../../assets/sass/colors"
+@use "../../assets/sass/sizes"
+@use "../../assets/sass/shadows"
+@import "../../assets/sass/main"
+
+$bottom-offset: toRem(20)
+
+.toast
+  position: fixed
+  min-width: 100px
+  left: 50%
+  bottom: 0
+  transform: translate(-50%, 0)
+  background: colors.$success-light
+  padding: sizes.$padding-comfortable
+  @include shadows.shadow(10px)
+  text-align: center
+  border-radius: 10% / 50%
+  visibility: hidden
+  opacity: 0    
+  transition: all 0.5s ease-out
+  &.open
+    visibility: visible
+    opacity: 1
+    bottom: $bottom-offset
+

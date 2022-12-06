@@ -3,6 +3,8 @@
 @use "../../assets/sass/shadows"
 @import "../../assets/sass/main"
 
+$button-size: calc(sizes.$icon-default + sizes.$padding-comfortable * 2)
+
 .wish-card
   display: flex
   flex-direction: column
@@ -12,6 +14,18 @@
   padding: sizes.$padding-social-distance
   border-radius: toRem(20)
   @include colors.card-color
+  > .unique-code
+    cursor: pointer
+    border-radius: 0.5rem / 50%
+    padding: 0.5rem
+    display: flex
+    align-items: center
+    &:active
+      background: rgba(0, 0, 0, 0.3)
+    > svg
+      margin-left: toRem(6)
+      width: sizes.$icon-default
+      height: sizes.$icon-default
 
 @media only screen and (min-width: 600px)
   .wish-card
