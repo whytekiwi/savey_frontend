@@ -29,11 +29,13 @@ const TagSelector: React.FC<ITagSelectorProps> = ({
           expanded: isExpanded,
         })}
       >
-        {selectedTags.length > 0 ? (
-          selectedTags.map((tag) => formatSelectedTag(tag))
-        ) : (
-          <span className="placeholder">Select some tags...</span>
-        )}
+        <div className="selected-tags">
+          {selectedTags.length > 0 ? (
+            selectedTags.map((tag) => formatSelectedTag(tag))
+          ) : (
+            <span className="placeholder">Select some tags...</span>
+          )}
+        </div>
         {isExpanded && (
           <div className="dropdown-content">
             {TagUtil.allTags.map((tag) => (

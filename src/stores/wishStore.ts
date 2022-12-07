@@ -38,15 +38,7 @@ class WishStore {
   }
 
   async saveWish(wish: Wish) {
-    runInAction(() => {
-      this.isLoading = true;
-    });
-
     await this.wishService.saveWish(wish);
-
-    runInAction(() => {
-      this.isLoading = false;
-    });
   }
 
   async uploadPhoto(file: File) {

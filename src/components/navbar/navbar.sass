@@ -1,0 +1,64 @@
+@use "../../assets/sass/colors"
+@use "../../assets/sass/sizes"
+@import "../../assets/sass/main"
+
+$icon-size-large: sizes.$icon-default
+$icon-size-small: toRem(12)
+$button-size-large: calc($icon-size-large + sizes.$padding-comfortable * 2)
+$button-size-small: calc($icon-size-small + sizes.$padding-hug * 2)
+
+.navbar
+  width: 100%
+  height: toRem(50)
+  background: colors.$primary-dark
+  > div
+    margin: auto
+    display: flex
+    height: 100%
+    gap: toRem(10)
+    justify-content: space-between
+    padding: 0 sizes.$padding-social-distance
+    > .title
+      height: 100%
+      flex-grow: 1
+      display: flex
+      align-items: center
+      > svg
+        max-height: toRem(40)
+        max-width: toRem(368)
+        height: 100%
+        width: 100%
+    > .actions
+      flex-grow: 0
+      display: flex
+      align-items: center
+      gap: sizes.$padding-comfortable
+      > button
+        width: $button-size-small
+        height: $button-size-small
+        border-radius: 50%
+        padding: 0
+        > svg
+          width: $icon-size-small
+          height: $icon-size-small
+
+@media only screen and (min-width: 400px)
+  .navbar > div > .actions > button
+    width: $button-size-large
+    height: $button-size-large
+    > svg
+      width: $icon-size-large
+      height: $icon-size-large
+
+  
+@media only screen and (min-width: 600px)
+  .navbar > div
+    max-width: 70%
+
+@media only screen and (min-width: 768px)
+  .navbar > div
+    max-width: 60%
+
+@media only screen and (min-width: 992px)
+  .navbar > div
+    max-width: 50%

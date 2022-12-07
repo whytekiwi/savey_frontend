@@ -16,7 +16,6 @@ import TabbedLayout from "../tabbedLayout/tabbedLayout";
 import { useStores } from "../../stores/rootStore";
 
 export interface IWishCardProps {
-  isLoading: boolean;
   isUploadingPhoto: boolean;
   isUploadingVideo: boolean;
   wish: Wish;
@@ -26,7 +25,6 @@ export interface IWishCardProps {
 }
 
 const WishCard: React.FC<IWishCardProps> = ({
-  isLoading,
   isUploadingPhoto,
   isUploadingVideo,
   wish,
