@@ -1,6 +1,5 @@
 @use '../../assets/sass/_colors'
 @use '../../assets/sass/_sizes'
-@import "../../assets/sass/_main"
 
 body
   background-color: colors.$background-light
@@ -8,5 +7,18 @@ body
 
 .body
   padding: sizes.$padding-social-distance
+  margin: auto
 *
   box-sizing: border-box
+
+@media only screen and (min-width: 600px)
+  .body
+    max-width: 70%
+
+@media only screen and (min-width: 768px)
+  .body
+    max-width: 60%
+
+@media only screen and (min-width: 992px)
+  .body
+    max-width: 50%

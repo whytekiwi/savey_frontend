@@ -1,5 +1,5 @@
 import { Wish } from "../models/wish";
-import { Config } from "../constants";
+import { Config } from "../utilities/constants";
 import { ColorUtil } from "../components/common/colorSwatch/color";
 
 export class WishService {

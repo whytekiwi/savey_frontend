@@ -1,5 +1,6 @@
 import classNames from "classnames";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import useOutsideAlerter from "../../../utilities/outsideAlerter";
 import { Color, ColorUtil } from "./color";
 import "./colorPicker.sass";
 
@@ -13,9 +14,15 @@ const ColorPicker: React.FC<IColorPickerProps> = ({
   onColorSelected,
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const elementRef = useRef<HTMLDivElement>(null);
+  useOutsideAlerter(elementRef, () => setIsExpanded(false));
 
   return (
-    <div className="color-picker" onClick={() => setIsExpanded(!isExpanded)}>
+    <div
+      ref={elementRef}
+      className="color-picker"
+      onClick={() => setIsExpanded(!isExpanded)}
+    >
       <div
         className={classNames("container", {
           expanded: isExpanded,

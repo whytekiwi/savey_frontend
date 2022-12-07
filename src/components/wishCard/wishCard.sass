@@ -3,13 +3,11 @@
 @use "../../assets/sass/_shadows"
 @import "../../assets/sass/_main"
 
-
 .wish-card
   display: flex
   flex-direction: column
   align-items: center
   gap: toRem(10)
-  margin: auto
   padding: sizes.$padding-social-distance
   border-radius: toRem(20)
   @include colors.card-color
@@ -25,15 +23,3 @@
       margin-left: toRem(6)
       width: sizes.$icon-default
       height: sizes.$icon-default
-
-@media only screen and (min-width: 600px)
-  .wish-card
-    max-width: 70%
-
-@media only screen and (min-width: 768px)
-  .wish-card
-    max-width: 60%
-
-@media only screen and (min-width: 992px)
-  .wish-card
-    max-width: 50%

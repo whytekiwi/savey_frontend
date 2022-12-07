@@ -1,0 +1,12 @@
+@use '../../assets/sass/_colors'
+@use '../../assets/sass/_sizes'
+@use '../../assets/sass/_shadows'
+@import "../../assets/sass/_main"
+
+.open-wish-modal
+  @include shadows.shadow(5px)
+  padding: sizes.$padding-social-distance
+  background: colors.$background-light
+  display: flex
+  flex-direction: column
+  gap: sizes.$padding-comfortable

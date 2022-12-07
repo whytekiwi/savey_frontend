@@ -27,6 +27,7 @@ class WishStore {
   async loadWish(id?: string) {
     runInAction(() => {
       this.isLoading = true;
+      this.wish = undefined;
     });
 
     const wish = await this.wishService.getWish(id);

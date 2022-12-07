@@ -1,4 +1,4 @@
-@use '../../../assets/sass/_colors'
+@use '../../assets/sass/_colors'
 
 .modal-background
   position: absolute
@@ -6,10 +6,13 @@
   height: 100%
   top: 0
   left: 0
+  z-index: 200
   background-color: rgba(0,0, 0, 0.7)
 
 .modal
   position: absolute
+  z-index: 250
   top: 50%
   left: 50%
+  transform: translate(-50%, 0)
   background-color: colors.$white

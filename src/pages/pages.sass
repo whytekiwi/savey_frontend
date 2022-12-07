@@ -1,0 +1,34 @@
+@use "../assets/sass/_colors"
+@use "../assets/sass/_sizes"
+
+$button-size: calc(sizes.$icon-default + sizes.$padding-comfortable * 2)
+
+.page-content
+  background: colors.$white
+  padding: sizes.$padding-social-distance
+  img
+    max-width: 300px
+  .row
+    display: flex
+    align-items: center
+    gap: sizes.$padding-social-distance
+  img.circle
+    border-radius: 50%
+    height: 250px
+    width: 250px
+    object-fit: cover
+  table>tr>td>button
+    width: $button-size
+    height: $button-size
+    border-radius: 50%
+  svg
+    width: sizes.$icon-default
+    height: sizes.$icon-default
+
+.loading-wish
+  width: auto
+  background: white
+  align-items: center
+  display: flex
+  flex-direction: column
+  padding: sizes.$padding-social-distance

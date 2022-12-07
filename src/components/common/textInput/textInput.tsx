@@ -4,7 +4,7 @@ import "./textInput.sass";
 export interface ITextInputProps {
   value?: string;
   placeholder: string;
-  onValueChanged: (value: string) => void;
+  onValueChanged?: (value: string) => void;
 }
 
 const TextInput: React.FC<ITextInputProps> = ({
@@ -15,7 +15,7 @@ const TextInput: React.FC<ITextInputProps> = ({
   const [innerValue, setValue] = useState<string>(value ?? "");
 
   useEffect(() => {
-    onValueChanged(innerValue);
+    onValueChanged?.(innerValue);
   }, [innerValue, onValueChanged]);
 
   return (

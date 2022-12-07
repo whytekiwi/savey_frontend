@@ -1,5 +1,6 @@
 import classNames from "classnames";
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
+import useOutsideAlerter from "../../../utilities/outsideAlerter";
 import { TagUtil } from "./tag";
 import "./tagSelector.sass";
 
@@ -13,6 +14,10 @@ const TagSelector: React.FC<ITagSelectorProps> = ({
   onTagToggled,
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
+  const elementRef = useRef<HTMLDivElement>(null);
+  useOutsideAlerter(elementRef, () => {
+    setIsExpanded(false);
+  });
 
   const formatSelectedTag = (tag: string): JSX.Element => {
     return (
@@ -23,7 +28,11 @@ const TagSelector: React.FC<ITagSelectorProps> = ({
   };
 
   return (
-    <div className="tag-selector" onClick={() => setIsExpanded(!isExpanded)}>
+    <div
+      ref={elementRef}
+      className="tag-selector"
+      onClick={() => setIsExpanded(!isExpanded)}
+    >
       <div
         className={classNames("container", {
           expanded: isExpanded,

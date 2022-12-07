@@ -1,25 +1,31 @@
-import React from "react";
-import { Outlet } from "react-router-dom";
+import React, { useState } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
 import "./root.sass";
 import { useStores } from "../../stores/rootStore";
 import Button from "../../components/common/button/button";
 import { observer } from "mobx-react";
 import Toast from "../../components/toast/toast";
 import Navbar from "../../components/navbar/navbar";
+import Modal from "../../components/modal/modal";
+import OpenWishModal from "../../components/openWishModal/openWishModal";
 
 const Root = () => {
-  const { uiStore } = useStores();
+  const { uiStore, wishStore } = useStores();
+  const navigate = useNavigate();
+
+  const [openWishModalOpen, setIsOpenWishModalOpen] = useState(false);
 
   const handleAboutClicked = () => {
-    console.log("about");
+    navigate("about");
   };
 
   const handleAddClicked = () => {
-    console.log("add");
+    navigate("/");
+    wishStore.loadWish();
   };
 
   const handleOpenClicked = () => {
-    console.log("open");
+    setIsOpenWishModalOpen(true);
   };
 
   return (
@@ -35,14 +41,24 @@ const Root = () => {
             <Outlet />
             <Toast />
           </div>
+          <OpenWishModal
+            isOpen={openWishModalOpen}
+            toggle={() => setIsOpenWishModalOpen(!openWishModalOpen)}
+            loadWish={(id) => {
+              setIsOpenWishModalOpen(false);
+              navigate(`/${id}`);
+            }}
+          />
         </>
       ) : (
-        <>
-          <div>Please confirm you ain't Libby</div>
-          <Button onClick={() => (uiStore.notLibby = true)}>
-            I ain't Libby
-          </Button>
-        </>
+        <Modal open={true}>
+          <>
+            <div>Please confirm you ain't Libby</div>
+            <Button onClick={() => (uiStore.notLibby = true)}>
+              I ain't Libby
+            </Button>
+          </>
+        </Modal>
       )}
     </>
   );

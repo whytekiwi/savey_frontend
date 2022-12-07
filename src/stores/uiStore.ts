@@ -5,7 +5,7 @@ class UiStore {
 
   constructor() {
     makeAutoObservable(this);
-    this.notLibby = false
+    this.notLibby = false;
   }
 }
 
