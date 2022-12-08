@@ -1,5 +1,5 @@
-@use '../../assets/sass/_colors'
-@use '../../assets/sass/_sizes'
+@use '../../assets/sass/colors'
+@use '../../assets/sass/sizes'
 
 body
   background-color: colors.$background-light
@@ -8,6 +8,8 @@ body
 .body
   padding: sizes.$padding-social-distance
   margin: auto
+  padding-bottom: calc(sizes.$footer-height + sizes.$padding-social-distance)
+
 *
   box-sizing: border-box
 

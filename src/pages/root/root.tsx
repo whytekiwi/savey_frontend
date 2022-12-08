@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { matchRoutes, Outlet, useLocation, useNavigate } from "react-router-dom";
 import { useStores } from "../../stores/rootStore";
 import Button from "../../components/common/button/button";
 import { observer } from "mobx-react";
@@ -10,10 +10,15 @@ import OpenWishModal from "../../components/openWishModal/openWishModal";
 import { runInAction } from "mobx";
 import CircleImage from "../../components/common/circleImage/circleImage";
 import "./root.sass";
+import Footer from "../../components/footer/footer";
 
 const Root = () => {
   const { uiStore, wishStore } = useStores();
   const navigate = useNavigate();
+  const locaion = useLocation();
+
+  const unrestrictedRotues = [{ path: "/privacy" }];
+  const skipLibbyCheck = matchRoutes(unrestrictedRotues, locaion);
 
   const [openWishModalOpen, setIsOpenWishModalOpen] = useState(false);
 
@@ -37,7 +42,7 @@ const Root = () => {
 
   return (
     <>
-      {uiStore.notLibby ? (
+      {(skipLibbyCheck || uiStore.notLibby) ? (
         <>
           <Navbar
             onHomeClicked={handleHomeClicked}
@@ -57,6 +62,7 @@ const Root = () => {
               navigate(`/${id}`);
             }}
           />
+          <Footer />
         </>
       ) : (
         <Modal open={true}>

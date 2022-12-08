@@ -1,0 +1,27 @@
+@use "../../assets/sass/colors"
+@use "../../assets/sass/sizes"
+
+.footer
+  z-index: 12
+  position: fixed
+  color: colors.$text-light
+  left: 0
+  bottom: 0
+  width: 100%
+  background-color: colors.$background-dark
+  height: 65px
+  display: flex
+  justify-content: space-between
+  align-items: center
+  padding: 0 sizes.$padding-social-distance
+  >div
+    display: flex
+    align-items: center
+    gap: sizes.$padding-comfortable
+  a
+    text-decoration: none
+    color: colors.$text-light
+  svg
+    color: colors.$card-royal-blue
+    width: 50px
+    height: 50px

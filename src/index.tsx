@@ -5,6 +5,7 @@ import Home from "./pages/home/home";
 import About from "./pages/about/about";
 import Error from "./pages/error/error";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Privacy from "./pages/privacy/privacy";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: "about",
         element: <About />,
+      },
+      {
+        path: "privacy",
+        element: <Privacy />,
       },
     ],
   },

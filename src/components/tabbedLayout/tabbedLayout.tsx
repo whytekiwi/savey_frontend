@@ -29,12 +29,6 @@ const TabbedLayout: React.FC<ITabbedLayoutProps> = ({
         {isLoading ? <Loader /> : tabs[selectedTabIndex].content}
       </div>
       <div className="tabs">
-        <div
-          className="tabs-indicator"
-          style={{
-            left: `${tabIndictaorPosition}%`,
-          }}
-        />
         {tabs.map((tab, index) => (
           <div
             onClick={() => setSelectedTabIndex(index)}
@@ -44,6 +38,12 @@ const TabbedLayout: React.FC<ITabbedLayoutProps> = ({
             {tab.label}
           </div>
         ))}
+        <div
+          className="tabs-indicator"
+          style={{
+            left: `${tabIndictaorPosition}%`,
+          }}
+        />
       </div>
     </div>
   );
