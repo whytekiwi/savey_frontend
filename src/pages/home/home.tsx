@@ -7,10 +7,11 @@ import { useStores } from "../../stores/rootStore";
 import { ReactComponent as AddIcon } from "../../assets/img/add.svg";
 import { ReactComponent as OpenIcon } from "../../assets/img/open.svg";
 import { ReactComponent as AboutIcon } from "../../assets/img/about.svg";
-import "../pages.sass";
 import Button from "../../components/common/button/button";
 import Loader from "../../components/common/loader/loader";
 import OpenWishModal from "../../components/openWishModal/openWishModal";
+import CircleImage from "../../components/common/circleImage/circleImage";
+import "../pages.sass";
 
 const Home = () => {
   const { wishStore } = useStores();
@@ -40,8 +41,6 @@ const Home = () => {
     setIsOpenWishModalOpen(true);
   };
 
-  const photoUrl = process.env.PUBLIC_URL + "20221022_224128.jpg";
-
   return wishStore.wish ? (
     <WishCard
       isUploadingPhoto={wishStore.isUploadingPhoto}
@@ -59,10 +58,9 @@ const Home = () => {
   ) : (
     <div className="page-content">
       <h1>Kia ora whānau</h1>
-      <div className="row">
-        <img
-          src={photoUrl}
-          className="circle"
+      <div className="row cyan">
+        <CircleImage
+          src="dj_and_libby.jpg"
           alt="DJ and Libby at Blindspott 2022"
         />
         <div>
@@ -78,30 +76,32 @@ const Home = () => {
           </p>
           <p>To get started, you can</p>
           <table>
-            <tr>
-              <td>- Create a whole new wish </td>
-              <td>
-                <Button onClick={handleAddClicked}>
-                  <AddIcon />
-                </Button>
-              </td>
-            </tr>
-            <tr>
-              <td>- Open an existing wish</td>
-              <td>
-                <Button onClick={handleOpenClicked}>
-                  <OpenIcon />
-                </Button>
-              </td>
-            </tr>
-            <tr>
-              <td>- Or learn more</td>
-              <td>
-                <Button onClick={handleAboutClicked}>
-                  <AboutIcon />
-                </Button>
-              </td>
-            </tr>
+            <tbody>
+              <tr>
+                <td>- Create a whole new wish </td>
+                <td>
+                  <Button onClick={handleAddClicked}>
+                    <AddIcon />
+                  </Button>
+                </td>
+              </tr>
+              <tr>
+                <td>- Open an existing wish</td>
+                <td>
+                  <Button onClick={handleOpenClicked}>
+                    <OpenIcon />
+                  </Button>
+                </td>
+              </tr>
+              <tr>
+                <td>- Or learn more</td>
+                <td>
+                  <Button onClick={handleAboutClicked}>
+                    <AboutIcon />
+                  </Button>
+                </td>
+              </tr>
+            </tbody>
           </table>
           <OpenWishModal
             isOpen={openWishModalOpen}

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
-import "./root.sass";
 import { useStores } from "../../stores/rootStore";
 import Button from "../../components/common/button/button";
 import { observer } from "mobx-react";
@@ -8,6 +7,9 @@ import Toast from "../../components/toast/toast";
 import Navbar from "../../components/navbar/navbar";
 import Modal from "../../components/modal/modal";
 import OpenWishModal from "../../components/openWishModal/openWishModal";
+import { runInAction } from "mobx";
+import CircleImage from "../../components/common/circleImage/circleImage";
+import "./root.sass";
 
 const Root = () => {
   const { uiStore, wishStore } = useStores();
@@ -17,6 +19,11 @@ const Root = () => {
 
   const handleAboutClicked = () => {
     navigate("about");
+  };
+
+  const handleHomeClicked = () => {
+    navigate("/");
+    runInAction(() => (wishStore.wish = undefined));
   };
 
   const handleAddClicked = () => {
@@ -33,6 +40,7 @@ const Root = () => {
       {uiStore.notLibby ? (
         <>
           <Navbar
+            onHomeClicked={handleHomeClicked}
             onAboutClicked={handleAboutClicked}
             onAddClicked={handleAddClicked}
             onOpenClicked={handleOpenClicked}
@@ -52,12 +60,18 @@ const Root = () => {
         </>
       ) : (
         <Modal open={true}>
-          <>
-            <div>Please confirm you ain't Libby</div>
-            <Button onClick={() => (uiStore.notLibby = true)}>
-              I ain't Libby
+          <div className="confirm-modal">
+            <CircleImage src="shhh.jpg" alt="Be very very quiet" />
+            <p>
+              Hey - I've got a secret to share with you. But you have to promise
+              you won't tell Libby.
+            </p>
+            <Button
+              onClick={() => runInAction(() => (uiStore.notLibby = true))}
+            >
+              Ok - I promise I won't tell
             </Button>
-          </>
+          </div>
         </Modal>
       )}
     </>

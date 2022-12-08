@@ -6,18 +6,13 @@ $button-size: calc(sizes.$icon-default + sizes.$padding-comfortable * 2)
 .page-content
   background: colors.$white
   padding: sizes.$padding-social-distance
-  img
-    max-width: 300px
   .row
     display: flex
     align-items: center
+    padding: sizes.$padding-social-distance
     gap: sizes.$padding-social-distance
-  img.circle
-    border-radius: 50%
-    height: 250px
-    width: 250px
-    object-fit: cover
-  table>tr>td>button
+    @include colors.card-color
+  table>tbody>tr>td>button
     width: $button-size
     height: $button-size
     border-radius: 50%
@@ -32,3 +27,12 @@ $button-size: calc(sizes.$icon-default + sizes.$padding-comfortable * 2)
   display: flex
   flex-direction: column
   padding: sizes.$padding-social-distance
+
+@media only screen and (max-width: 1000px)
+  .page-content
+    .row
+      flex-direction: column
+      text-align: center
+      table
+        margin: auto
+

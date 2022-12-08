@@ -7,12 +7,14 @@ import { ReactComponent as Title } from "../../assets/img/title.svg";
 import "./navbar.sass";
 
 export interface INavbarProps {
+  onHomeClicked: () => void;
   onAddClicked: () => void;
   onOpenClicked: () => void;
   onAboutClicked: () => void;
 }
 
 const Navbar: React.FC<INavbarProps> = ({
+  onHomeClicked,
   onAddClicked,
   onOpenClicked,
   onAboutClicked,
@@ -20,7 +22,7 @@ const Navbar: React.FC<INavbarProps> = ({
   return (
     <div className="navbar">
       <div>
-        <div className="title">
+        <div className="title" onClick={onHomeClicked}>
           <Title />
         </div>
         <div className="actions">
