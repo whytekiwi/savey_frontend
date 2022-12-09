@@ -49,6 +49,7 @@ const Privacy = () => {
         <a
           href="https://learn.microsoft.com/en-us/azure/storage/common/storage-service-encryption"
           target="_blank"
+          rel="noreferrer"
         >
           encrypted at rest.
         </a>
