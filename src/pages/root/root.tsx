@@ -15,10 +15,10 @@ import Footer from "../../components/footer/footer";
 const Root = () => {
   const { uiStore, wishStore } = useStores();
   const navigate = useNavigate();
-  const locaion = useLocation();
+  const location = useLocation();
 
-  const unrestrictedRotues = [{ path: "/privacy" }];
-  const skipLibbyCheck = matchRoutes(unrestrictedRotues, locaion);
+  const unrestrictedRoutes = [{ path: "/privacy" }];
+  const skipLibbyCheck = matchRoutes(unrestrictedRoutes, location);
 
   const [openWishModalOpen, setIsOpenWishModalOpen] = useState(false);
 
@@ -43,7 +43,7 @@ const Root = () => {
   return (
     <>
       {(skipLibbyCheck || uiStore.notLibby) ? (
-        <>
+        <div className="root">
           <Navbar
             onHomeClicked={handleHomeClicked}
             onAboutClicked={handleAboutClicked}
@@ -63,7 +63,7 @@ const Root = () => {
             }}
           />
           <Footer />
-        </>
+        </div>
       ) : (
         <Modal open={true}>
           <div className="confirm-modal">

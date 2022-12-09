@@ -3,13 +3,13 @@
 @use "../../assets/sass/shadows"
 @import "../../assets/sass/main"
 
-$bottom-offset: toRem(20)
+$bottom-offset: calc(toRem(20) + sizes.$footer-height)
 
 .toast
   position: fixed
   min-width: 100px
   left: 50%
-  bottom: 0
+  bottom: sizes.$footer-height
   transform: translate(-50%, 0)
   background: colors.$success-light
   padding: sizes.$padding-comfortable

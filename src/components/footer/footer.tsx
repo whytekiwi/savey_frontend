@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { ReactComponent as Logo } from "../../assets/img/whitekiwi.svg";
+import { ReactComponent as Logo } from "../../assets/img/whytekiwi.svg";
 import "./footer.sass";
 
 const Footer = () => {

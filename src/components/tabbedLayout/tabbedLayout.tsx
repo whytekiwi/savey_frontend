@@ -21,7 +21,7 @@ const TabbedLayout: React.FC<ITabbedLayoutProps> = ({
   isLoading,
   setSelectedTabIndex,
 }) => {
-  const tabIndictaorPosition = (100 / tabs.length) * selectedTabIndex;
+  const tabIndicatorPosition = (100 / tabs.length) * selectedTabIndex;
 
   return (
     <div className="tabbed-layout">
@@ -41,7 +41,7 @@ const TabbedLayout: React.FC<ITabbedLayoutProps> = ({
         <div
           className="tabs-indicator"
           style={{
-            left: `${tabIndictaorPosition}%`,
+            left: `${tabIndicatorPosition}%`,
           }}
         />
       </div>

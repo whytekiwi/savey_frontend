@@ -5,10 +5,14 @@ body
   background-color: colors.$background-light
   color: colors.$text-dark
 
-.body
-  padding: sizes.$padding-social-distance
-  margin: auto
-  padding-bottom: calc(sizes.$footer-height + sizes.$padding-social-distance)
+.root 
+  display: flex
+  flex-direction: column
+  min-height: 100vh
+  .body
+    padding: sizes.$padding-social-distance
+    margin: auto
+    flex: 1
 
 *
   box-sizing: border-box
